@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SharedLogic.Models.OrderModel.Line>
+
+@{
+    ViewData["Title"] = "Get Top 5 Products";
+}
+<h1>@ViewData["Title"]</h1>
+<br /><br />
+<div>
+    <table class="text-center table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Channel Product No</th>                     
+                <th>Description</th>               
+                <th>Gtin</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.ChannelProductNo)
+                    </td>       
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.Description)
+                    </td>                  
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.Gtin)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.Quantity)
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

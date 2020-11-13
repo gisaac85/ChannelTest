@@ -1,0 +1,182 @@
+﻿@model IEnumerable<SharedLogic.Models.OrderModel.Content>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<p>Order</p>
+
+<div>
+    <table class="text-center table-bordered table-hover">
+        <thead>
+
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>OrderNo</th>
+                <th>Order Support</th>
+                <th>Company RegistrationNo</th>
+                <th>Created</th>
+                <th>Currency Code</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.ChannelId)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.ChannelName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.ChannelOrderNo)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.ChannelOrderSupport)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.CompanyRegistrationNo)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.CurrencyCode)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.PaymentMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.Status)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<br />
+<br />
+<p>Billing Address</p>
+
+<div>
+    <table class="text-center table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>House No</th>
+                <th>House Addition No</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+                <th>Company Name</th>
+                <th>Gender</th>
+                <th>Region</th>
+                <th>Original</th>
+                <th>Line1</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.HouseNr)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.HouseNrAddition)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.StreetName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.Region)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.Original)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(modelItem => item.BillingAddress.Line1)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<br />
+<br />
+<p>Line</p>
+
+<div>
+    <table class="text-center table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Channel Product No</th>
+                <th>Product No</th>
+                <th>Condition</th>
+                <th>Description</th>
+                <th>Expected Delivery Date</th>
+                <th>Gtin</th>
+                <th>Quantity</th>             
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].ChannelProductNo)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].ChannelProductNo)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].Condition)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].Description)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].ExpectedDeliveryDate)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].Gtin)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Lines[0].Quantity)
+                </td>
+
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
