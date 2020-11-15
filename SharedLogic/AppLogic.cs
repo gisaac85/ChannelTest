@@ -91,7 +91,26 @@ namespace SharedLogic
             }
         }
 
-        public static async Task<List<Models.OfferModel.Content>> UpdateStock()
+        public static async Task<List<Models.OfferModel.Content>> GetOldStock()
+        {          
+            HttpClient client = new HttpClient();           
+
+            client.BaseAddress = new Uri(uri);
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = client.GetAsync(uri + queryStock + apiKey).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resultJsonString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<Models.OfferModel.Root>(resultJsonString);                
+                return result.Content;               
+            }
+            return null;
+        }
+
+        public static async Task<List<Models.OfferModel.Content>> UpdateStock(string Stock)
         {
             List<Models.OfferModel.Content> newOffer = new List<Models.OfferModel.Content>();
             HttpClient client = new HttpClient();
@@ -110,7 +129,7 @@ namespace SharedLogic
 
                 foreach (var item in result.Content)
                 {
-                    item.Stock = 25;
+                    item.Stock = Convert.ToInt32(Stock);
                     item.UpdatedAt = DateTime.Now;
                 };
 

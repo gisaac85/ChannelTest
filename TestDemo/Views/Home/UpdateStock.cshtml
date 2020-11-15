@@ -5,6 +5,44 @@
 <h1>@ViewData["Title"]</h1>
 <br />
 <br />
+
+<script>
+    function empty() {
+        var stock;
+        stock = document.getElementById("Stock").value;
+        if (stock == "") {
+            alert("Enter a Valid Stock Number");
+            return false;
+        };
+    }
+</script>
+
+@using (Html.BeginForm("UpdateStock", "Home", FormMethod.Post, new { @Id = "myForm" }))
+{
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <div>
+                <label for="MerchantProductNo"><b>MerchantProductNo:</b> </label>
+                @Html.DisplayTextFor(modelItem => item.MerchantProductNo)
+            </div>
+
+            <div>
+                <label for="StockLocationId"><b>StockLocationId:</b></label>
+                @Html.DisplayTextFor(modelItem => item.StockLocationId)
+            </div>
+
+            <div>
+                <label for="Stock"><b>Enter a new Stock</b></label>
+                <input type="text" name="Stock" id="Stock">
+            </div>
+            <input id="submit" type="submit" name="submit" onClick="return empty(); " />
+        }
+    }
+
+}
+<br /><br />
 <div>
     <table class="text-center table-bordered table-hover">
         <thead>
@@ -24,27 +62,27 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @if (TempData["enterValue"] != null)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayTextFor(modelItem => item.MerchantProductNo)
-                    </td>
-                    <td>
-                        @Html.DisplayTextFor(modelItem => item.Stock)
-                    </td>
-                    <td>
-                        @Html.DisplayTextFor(modelItem => item.StockLocationId)
-                    </td>
-                    <td>
-                        @Html.DisplayTextFor(modelItem => item.UpdatedAt)
-                    </td>
-
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayTextFor(modelItem => item.MerchantProductNo)
+                        </td>
+                        <td>
+                            <input id="newStock" name="newStock" value=@TempData["Stock"] />
+                        </td>
+                        <td>
+                            @Html.DisplayTextFor(modelItem => item.StockLocationId)
+                        </td>
+                        <td>
+                            @Html.DisplayTextFor(modelItem => item.UpdatedAt)
+                        </td>
+                    </tr>
+                }
             }
 
         </tbody>
     </table>
 </div>
-
-

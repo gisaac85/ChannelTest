@@ -33,9 +33,22 @@ namespace TestDemo.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> UpdateStock()
-        {
-            var model = await AppLogic.UpdateStock();
+        public async Task<IActionResult> UpdateStock(string Stock)
+        {          
+            TempData["enterValue"] = "true";
+            var model = await AppLogic.GetOldStock();
+            TempData["Stock"] = model.Select(x=>x.Stock).FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                if (Stock != null)
+                {
+                    model = await AppLogic.UpdateStock(Stock);
+
+                    TempData["Stock"] = Stock;                   
+                }
+            }
+
             return View(model);
         }
 
